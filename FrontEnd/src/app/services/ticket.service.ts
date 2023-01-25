@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import {TicketModel} from "../shared/models/ticketModel";
 import {map} from 'rxjs/operators'
-import {TicketBuyComponent} from "../components/tickets/ticket-buy/ticket-buy.component";
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +42,14 @@ export class TicketService {
   }
 
   onBuyTicket(ticketData: TicketModel){
+    ticketData.ticketStatus = "PURCHASED"
+    ticketData.user = "2"
+    console.log(ticketData);
+    return this.http.post(this.baseUrl + "/saveTicket", ticketData);
+  }
+  onReserveTicket(ticketData: TicketModel){
+    ticketData.ticketStatus = "RESERVED"
+    ticketData.user = "2"
     return this.http.post(this.baseUrl + "/saveTicket", ticketData);
   }
 }

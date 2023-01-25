@@ -10,19 +10,19 @@ public class TicketRequest {
 
     private String vehicle;
 
-    private String seatId;
+    private String seat;
 
     private String ticketStatus;
 
     public TicketRequest() {
     }
 
-    public TicketRequest(String name, String surname, String user, String vehicle, String seatId, String ticketStatus) {
+    public TicketRequest(String name, String surname, String user, String vehicle, String seat, String ticketStatus) {
         this.name = name;
         this.surname = surname;
         this.user = user;
         this.vehicle = vehicle;
-        this.seatId = seatId;
+        this.seat = seat;
         this.ticketStatus = ticketStatus;
     }
 
@@ -58,12 +58,12 @@ public class TicketRequest {
         this.vehicle = vehicle;
     }
 
-    public String getSeatId() {
-        return seatId;
+    public String getSeat() {
+        return seat;
     }
 
-    public void setSeatId(String seatId) {
-        this.seatId = seatId;
+    public void setSeat(String seat) {
+        this.seat = seat;
     }
 
     public String getTicketStatus() {

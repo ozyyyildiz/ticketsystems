@@ -32,17 +32,20 @@ public class TicketController {
         return ticketFacade.getTicket(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/saveTicket")
+    @RequestMapping(method = RequestMethod.POST, value = "/saveTicket", produces = "application/json")
+    @ResponseBody
     public ResponseMessage saveTicket(@RequestBody TicketRequest ticketRequest){
         return ticketFacade.saveTicket(ticketRequest);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/updateTicket")
+    @ResponseBody
     public ResponseMessage updateTicket(@RequestBody TicketDto ticketDto){
         return ticketFacade.updateTicket(ticketDto);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/deleteTicket{id}")
+    @ResponseBody
     public ResponseMessage deleteTicket(@PathVariable("id") String id){
         return ticketFacade.deleteTicket(id);
     }

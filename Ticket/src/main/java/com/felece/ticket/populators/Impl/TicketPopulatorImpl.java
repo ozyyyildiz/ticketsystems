@@ -73,7 +73,7 @@ public class TicketPopulatorImpl implements TicketPopulator {
         ticketModel.setSurname(ticketRequest.getSurname());
         ticketModel.setUser(userService.getUserModel(Long.parseLong(ticketRequest.getUser())));
         ticketModel.setTicketStatus(ticketService.getTicketStatus(Long.parseLong(ticketRequest.getTicketStatus())));
-        ticketModel.setSeatNumber(seatService.getSeatModel(Long.parseLong(ticketRequest.getSeatId())));
+        ticketModel.setSeatNumber(seatService.getSeatModel(Long.parseLong(ticketRequest.getSeat())));
         ticketModel.setVehicle(vehicleService.getVehicleModelByPlate(ticketRequest.getVehicle()));
         return ticketModel;
     }

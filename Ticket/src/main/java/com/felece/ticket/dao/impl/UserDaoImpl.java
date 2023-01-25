@@ -118,9 +118,9 @@ public class UserDaoImpl implements UserDao {
             Session session = sessionFactory.getCurrentSession();
             UserModel userModel = (UserModel) session.createQuery("FROM UserModel WHERE email = :email").setParameter("email", email).getSingleResult();
             if(userModel != null){
-                return true;
-            }else {
                 return false;
+            }else {
+                return true;
             }
         }catch (Exception e){
             logger.error(e.toString());

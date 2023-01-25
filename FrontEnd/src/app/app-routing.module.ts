@@ -30,12 +30,15 @@ import {
   AdminVehiclesDetailComponent
 } from "./components/admin/admin-vehicles/admin-vehicles-detail/admin-vehicles-detail.component";
 import {UserTicketsComponent} from "./components/admin/users/user-tickets/user-tickets.component";
-import {TicketDetailComponent} from "./components/tickets/ticket-detail/ticket-detail.component";
 import {TicketListComponent} from "./components/tickets/ticket-list/ticket-list.component";
+import {SignupComponent} from "./components/auth/signup/signup.component";
+import {LoginComponent} from "./components/auth/login/login.component";
 
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/routes', pathMatch:'full' },
+  { path: 'login', component: LoginComponent},
+  { path: 'signup', component : SignupComponent },
   { path: 'routes', component: RoutesComponent, children: [
       { path: '', component: RoutesStartComponent },
       { path: ':id', component: RoutesDetailComponent }

@@ -1,5 +1,3 @@
-import {UserRoleModel} from "./userRoleModel";
-
 export class UserModel{
 
   constructor(public userName: string,

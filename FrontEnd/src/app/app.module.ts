@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from "./shared/header/header.component";
-import { HttpClientModule } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { RoutesComponent } from './components/routes/routes.component';
 import { RoutesDetailComponent } from './components/routes/routes-detail/routes-detail.component';
 import { RoutesListComponent } from './components/routes/routes-list/routes-list.component';
@@ -37,6 +37,9 @@ import { AdminVehiclesDetailComponent } from './components/admin/admin-vehicles/
 import { NgbDatepicker } from "@ng-bootstrap/ng-bootstrap";
 import { UserTicketsComponent } from './components/admin/users/user-tickets/user-tickets.component';
 import { TicketListComponent } from './components/tickets/ticket-list/ticket-list.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import {AuthInterceptorService} from "./services/auth-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -71,7 +74,9 @@ import { TicketListComponent } from './components/tickets/ticket-list/ticket-lis
     AdminVehiclesListComponent,
     AdminVehiclesDetailComponent,
     UserTicketsComponent,
-    TicketListComponent
+    TicketListComponent,
+    SignupComponent,
+    LoginComponent
   ],
     imports: [
         BrowserModule,
@@ -81,7 +86,9 @@ import { TicketListComponent } from './components/tickets/ticket-list/ticket-lis
         ReactiveFormsModule,
         NgbDatepicker
     ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

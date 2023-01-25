@@ -1,7 +1,7 @@
 package com.felece.ticket.config;
 
-import com.felece.ticket.populators.*;
 import com.felece.ticket.populators.Impl.*;
+import com.felece.ticket.populators.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
@@ -10,18 +10,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.security.config.annotation.SecurityBuilder;
-import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.sql.DataSource;
 import java.util.Arrays;
@@ -29,9 +21,8 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableWebSecurity
 @EnableAutoConfiguration(exclude = HibernateJpaAutoConfiguration.class)
-public class Config {
+public class Config{
 
     @Value("${db.driver}")
     private String DRIVER;
@@ -56,12 +47,6 @@ public class Config {
 
     @Value("${entitymanager.packagesToScan}")
     private String PACKAGES_TO_SCAN;
-
-    @Bean
-    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable().cors().disable();
-        return http.build();
-    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
@@ -130,4 +115,6 @@ public class Config {
     public RoutePopulator routePopulator(){
         return new RoutePopulatorImpl();
     }
+
+
 }

@@ -17,6 +17,9 @@ public class UserPopulatorImpl implements UserPopulator {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public UserModel dtoToModel(UserDto userDto) {
 
@@ -45,7 +48,7 @@ public class UserPopulatorImpl implements UserPopulator {
         UserModel userModel = new UserModel();
         userModel.setUserName(userRequest.getUserName());
         userModel.setEmail(userRequest.getEmail());
-        userModel.setPassword(userRequest.getPassword());
+        userModel.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         if(userRequest.getUserRole() != null){
             userModel.setRole(userService.getUserRoleModel(Long.parseLong(userRequest.getUserRole())));
         }else{

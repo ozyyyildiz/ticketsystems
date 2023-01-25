@@ -63,10 +63,10 @@ public class TicketFacadeImpl implements TicketFacade {
         TicketModel ticketModel = ticketPopulator.dtoToModelForSave(ticketRequest);
         if (ticketService.saveTicketModel(ticketModel)) {
             SeatModel seatModel = ticketModel.getSeatNumber();
-            if(ticketRequest.getTicketStatus()=="RESERVED"){
-                seatModel.setStatus(seatService.getSeatStatusByName("RESERVED"));
-            }else if(ticketRequest.getTicketStatus()=="PURCHASED"){
-                seatModel.setStatus(seatService.getSeatStatusByName("OCCUPIED"));
+            if(ticketRequest.getTicketStatus()=="1"){
+                seatModel.setStatus(seatService.getSeatStatus(Long.parseLong(ticketRequest.getTicketStatus())));
+            }else if(ticketRequest.getTicketStatus()=="2"){
+                seatModel.setStatus(seatService.getSeatStatus(Long.parseLong(ticketRequest.getTicketStatus())));
             }else{
                 responseMessage.setStatus(false);
                 responseMessage.setMessage("Koltuk rezerve edilirken bir hata oluştu.");

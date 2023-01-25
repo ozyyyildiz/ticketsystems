@@ -5,13 +5,13 @@ import {TicketStatusModel} from "./ticketStatusModel";
 
 export class TicketModel {
 
-  constructor(public id: string,
-              public name: string,
+  constructor(public name: string,
               public surname: string,
-              public user: string,
               public vehicle: string,
               public seat: string,
-              public ticketStatus: string) {
+              public user?: string,
+              public id?: string,
+              public ticketStatus?: string) {
   }
 
   // constructor(public id: string,
