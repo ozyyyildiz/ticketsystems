@@ -1,0 +1,25 @@
+<div class="container" style="margin-top: 10px">
+  <div class="form-group float-right">
+    <input placeholder="Filtreleme" type="text" class="form-control" [(ngModel)]="filterData">
+  </div>
+
+  <br/>
+  <table class="table table-bordered">
+    <thead>
+    <th>Adı</th>
+    <th>Soyadı</th>
+    <th>Araç</th>
+    <th>Koltuk Numarası</th>
+    <th>Bilet Statüsü</th>
+    </thead>
+    <tbody *ngIf="loadedTickets.length >= 1">
+    <tr *ngFor="let ticket of loadedTickets | tableFilter: filterData">
+      <td>{{ticket.name}}</td>
+      <td>{{ticket.surname}}</td>
+      <td>{{ticket.vehicle}}</td>
+      <td>{{ticket.seatId}}</td>
+      <td>{{ticket.ticketStatus}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

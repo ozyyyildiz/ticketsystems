@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-4">
+    <button class="btn btn-success" routerLink="./create" style="margin-top: 5px; margin-bottom: 10px;"> + Yeni Rota</button>
+    <app-admin-routes-list *ngFor="let tempRoute of loadedRoutes" [route]="tempRoute"></app-admin-routes-list>
+  </div>
+  <div class="col-md-8">
+    <router-outlet></router-outlet>
+  </div>
+</div>

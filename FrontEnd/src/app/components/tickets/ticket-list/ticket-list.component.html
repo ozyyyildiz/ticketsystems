@@ -1,0 +1,30 @@
+<div class="container" style="margin-top: 10px">
+  <div class="form-group float-right">
+    <input placeholder="Filtreleme" type="text" class="form-control" [(ngModel)]="filterData">
+  </div>
+
+  <br/>
+  <table class="table table-bordered">
+    <thead>
+    <th>Adı</th>
+    <th>Soyadı</th>
+    <th>Araç</th>
+    <th>Koltuk Numarası</th>
+    <th>Bilet Statüsü</th>
+    <th>İşlemler</th>
+    </thead>
+    <tbody *ngIf="loadedTickets.length >= 1">
+    <tr *ngFor="let ticket of loadedTickets | tableFilter: filterData">
+      <td>{{ticket.name}}</td>
+      <td>{{ticket.surname}}</td>
+      <td>{{ticket.vehicle}}</td>
+      <td>{{ticket.seatId}}</td>
+      <td>{{ticket.ticketStatus}}</td>
+      <td><button class="btn btn-danger" (click)="onTicketCancel(ticket.id)" style="margin-right: 5px;">İptal Et</button>
+        <button class="btn btn-secondary" (click)="onTicketPostPone(ticket.id)" style="margin-right: 5px;">Ertele</button>
+        <button class="btn btn-primary" *ngIf="ticket.ticketStatus === 'RESERVED'" (click)="onTicketBuy(ticket.id)" style="margin-right: 5px;">Satın Al</button></td>
+    </tr>
+    <ng-template #elseBlock><td>Bilet Bulunamadı</td></ng-template>
+    </tbody>
+  </table>
+</div>

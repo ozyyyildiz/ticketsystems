@@ -1,0 +1,25 @@
+<div class="container" style="margin-top: 10px">
+  <button class="btn btn-success" routerLink="../create"> + Yeni Araç</button>
+  <div class="form-group float-right">
+    <input placeholder="Filtreleme" type="text" class="form-control" [(ngModel)]="filterData">
+  </div>
+
+  <br/>
+  <table class="table table-bordered">
+    <thead>
+    <th>Araç Plakası</th>
+    <th>Kalkış Saati</th>
+    <th>Rota</th>
+    <th>İşlemler</th>
+    </thead>
+    <tbody *ngIf="loadedVehicles.length >= 1">
+    <tr *ngFor="let vehicle of loadedVehicles | tableFilter: filterData">
+      <td>{{vehicle.licensePlate}}</td>
+      <td>{{vehicle.expTime}}</td>
+      <td>{{vehicle.routeDto}}</td>
+      <ng-template #elseBlock><td>Rota Bulunamadı</td></ng-template>
+      <td><button class="btn btn-primary" routerLink="../{{vehicle.id}}" style="margin-right: 5px;">Düzenle</button> <button (click)="onDeleteVehicle(vehicle.id)" class="btn btn-danger">Sil</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

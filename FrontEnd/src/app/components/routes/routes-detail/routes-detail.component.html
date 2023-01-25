@@ -1,0 +1,15 @@
+<div class="row">
+  <h3 *ngIf="vehicleList.length < 1">Bu rotada aktif bir araç bulunmamaktadır.</h3>
+  <ul class="list-group" *ngIf="vehicleList.length >= 1">
+    <li class="list-group-item" *ngFor="let vehicle of vehicleList">
+      <span><b>Araç Plakası:</b> {{vehicle.licensePlate}}</span><br>
+      <span><b>Araç Tarihi ve Saati:</b> {{vehicle.expTime}}</span><br>
+      <span>Lütfen aşağıdan boş bir koltuk seçiniz.</span><br>
+      <a *ngFor="let seat of vehicle.seatDto">
+        <span style="cursor: pointer; margin-right: 5px;" *ngIf="seat.status.seatStatus === 'EMPTY'"> {{seat.seatNumber}} <img src="assets/empty.png" routerLink="/tickets/{{vehicle.id}}/{{seat.id}}"> </span>
+        <span style="margin-right: 5px;" *ngIf="seat.status.seatStatus === 'OCCUPIED'"> {{seat.seatNumber}} <img src="assets/occupied.png"> </span>
+        <br *ngIf="+(seat.seatNumber) > 9 && +(seat.seatNumber) %10==0">
+      </a>
+    </li>
+  </ul>
+</div>

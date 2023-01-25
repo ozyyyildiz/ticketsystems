@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <div id="user-data">
+          <div class="form-group">
+            <div class="col-md-4 mb-3">
+              <label for="licensePlate">Araç Plakası</label>
+              <input type="text" class="form-control" id="licensePlate" ngModel name="licensePlate" required #licensePlate="ngModel">
+              <small *ngIf="!licensePlate.valid && licensePlate.touched">Lütfen geçerli bir plaka giriniz.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-4 mb-3">
+              <label for="expTime">Kalkış Saati</label>
+              <input type="datetime-local" class="form-control" ngModel id="expTime" name="expTime" #expTime="ngModel" required
+                     min="{{minDate}}">
+              <small *ngIf="!expTime.valid && expTime.touched">Lütfen geçerli tarih giriniz.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-4 mb-3">
+              <label for="route">Rota seçiniz.</label>
+              <select name="route" ngModel id="route" class="form-control" #routeV="ngModel" required>
+                <option *ngFor="let route of routeList" value="{{route.id}}">{{route.fromCity}} - {{route.toCity}}</option>
+              </select>
+              <small *ngIf="!routeV.valid && routeV.touched">Lütfen bir rota seçiniz.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-4 mb-3">
+              <label for="seatCount">Koltuk Sayısı</label>
+              <input class="form-control" type="number" id="seatCount" required #seatCount="ngModel" ngModel name="seatCount" min="10" max="30">
+              <small *ngIf="!seatCount.valid && seatCount.touched">Lütfen 10-30 arasında bir koltuk sayısı giriniz.</small>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid" >Araç Ekle</button>
+      </form>
+    </div>
+  </div>
+</div>
