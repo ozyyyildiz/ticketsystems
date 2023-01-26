@@ -13,6 +13,4 @@ public interface RouteDao {
     Boolean saveRouteModel(RouteModel routeModel);
 
     Boolean deleteRouteModel(Long id);
-
-    Boolean updateRoute(RouteModel routeModel);
 }

@@ -9,7 +9,7 @@ public interface SeatService {
 
     List<SeatModel> getAllVehicleSeats(Long id);
 
-    List<SeatModel> getAllSeats();
+    List<SeatModel> getAllEmptySeats();
 
     SeatModel getSeatModel(Long id);
 

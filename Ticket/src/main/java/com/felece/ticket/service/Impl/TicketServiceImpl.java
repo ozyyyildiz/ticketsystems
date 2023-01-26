@@ -21,8 +21,8 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<TicketModel> getTicketModelsByUserId(Long id) {
-        return ticketDao.getTicketModelsByUserId(id);
+    public List<TicketModel> getTicketModelsByUsername(String username) {
+        return ticketDao.getTicketModelsByUsername(username);
     }
 
     @Override

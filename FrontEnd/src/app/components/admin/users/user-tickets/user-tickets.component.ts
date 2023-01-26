@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {UserModel} from "../../../../shared/models/userModel";
 import {TicketModel} from "../../../../shared/models/ticketModel";
 import {TicketService} from "../../../../services/ticket.service";
 
@@ -19,7 +18,6 @@ export class UserTicketsComponent implements OnInit {
   ngOnInit(){
     this.ticketService.getAllTickets().subscribe(responseData => {
       this.loadedTickets = responseData;
-      console.log(responseData);
     })
   }
 

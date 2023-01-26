@@ -1,8 +1,6 @@
 package com.felece.ticket.model;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "Route")

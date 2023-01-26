@@ -44,6 +44,4 @@ export class VehiclesService {
   deleteVehicle(id: string){
     return this.http.post(this.baseUrl + '/deleteVehicle' + id, '');
   }
-
-  routeVehicles
 }

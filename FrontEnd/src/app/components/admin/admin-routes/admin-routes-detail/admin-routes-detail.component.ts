@@ -32,13 +32,13 @@ export class AdminRoutesDetailComponent implements OnInit{
     this.loadedRoute.fromCity = form.value.fromCity
     this.loadedRoute.toCity = form.value.toCity
     this.routesService.updateRoute(this.loadedRoute).subscribe(responseData => {
-      console.log(responseData);
+      window.location.reload();
     })
   }
 
   onDelete(id: string){
     this.routesService.deleteRoute(id).subscribe(responseData => {
-      console.log(responseData);
+      window.location.reload();
     })
   }
 

@@ -1,7 +1,6 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {RoutesComponent} from "./components/routes/routes.component";
-import {VehiclesComponent} from "./components/vehicles/vehicles.component";
 import {RoutesStartComponent} from "./components/routes/routes-start/routes-start.component";
 import {RoutesDetailComponent} from "./components/routes/routes-detail/routes-detail.component";
 import {TicketsComponent} from "./components/tickets/tickets.component";
@@ -33,6 +32,9 @@ import {UserTicketsComponent} from "./components/admin/users/user-tickets/user-t
 import {TicketListComponent} from "./components/tickets/ticket-list/ticket-list.component";
 import {SignupComponent} from "./components/auth/signup/signup.component";
 import {LoginComponent} from "./components/auth/login/login.component";
+import {AuthGuardService} from "./services/auth-guard.service";
+import {AdminGuardService} from "./services/admin-guard.service";
+import {AdminSeatListComponent} from "./components/admin/seat-list/seat-list.component";
 
 
 const appRoutes: Routes = [
@@ -43,12 +45,11 @@ const appRoutes: Routes = [
       { path: '', component: RoutesStartComponent },
       { path: ':id', component: RoutesDetailComponent }
     ]},
-  { path: 'vehicles', component: VehiclesComponent },
-  { path: 'tickets', component: TicketsComponent, children: [
+  { path: 'tickets', component: TicketsComponent,canActivate:[AuthGuardService] , children: [
       { path: 'myTickets/:uid', component: TicketListComponent },
       { path: ':vid/:sid', component: TicketBuyComponent }
     ]},
-  { path: 'admin', component: AdminComponent, children: [
+  { path: 'admin', component: AdminComponent, canActivate:[AdminGuardService] , children: [
       { path: 'users', component: UsersComponent, children: [
           { path: 'list', component: UserListComponent },
           { path: 'create', component: UserCreateComponent },
@@ -65,6 +66,7 @@ const appRoutes: Routes = [
           { path: ':vid', component: AdminVehiclesDetailComponent }
         ]},
        { path: 'tickets', component: UserTicketsComponent},
+        { path: 'seats', component: AdminSeatListComponent}
     ]}
 ]
 

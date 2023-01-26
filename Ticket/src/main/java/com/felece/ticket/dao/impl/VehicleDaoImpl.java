@@ -1,7 +1,6 @@
 package com.felece.ticket.dao.impl;
 
 import com.felece.ticket.dao.VehicleDao;
-import com.felece.ticket.model.SeatModel;
 import com.felece.ticket.model.VehicleModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

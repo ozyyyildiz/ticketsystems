@@ -1,7 +1,6 @@
 package com.felece.ticket.facade.Impl;
 
 import com.felece.ticket.dto.UserDto;
-import com.felece.ticket.dto.UserRoleDto;
 import com.felece.ticket.facade.UserFacade;
 import com.felece.ticket.model.UserModel;
 import com.felece.ticket.populators.UserPopulator;

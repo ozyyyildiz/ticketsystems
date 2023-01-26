@@ -46,11 +46,11 @@ public class TicketDaoImpl implements TicketDao {
     }
 
     @Override
-    public List<TicketModel> getTicketModelsByUserId(Long id) {
+    public List<TicketModel> getTicketModelsByUsername(String username) {
         try{
             Session session = sessionFactory.getCurrentSession();
-            return session.createQuery("FROM TicketModel WHERE user.id = :id")
-                    .setParameter("id", id).getResultList();
+            return session.createQuery("FROM TicketModel WHERE user.userName = :username")
+                    .setParameter("username", username).getResultList();
         }catch (Exception e){
             logger.error(e.toString());
             return Collections.emptyList();

@@ -67,16 +67,4 @@ public class RouteDaoImpl implements RouteDao {
             return false;
         }
     }
-
-    @Override
-    public Boolean updateRoute(RouteModel routeModel) {
-        try{
-            Session session = sessionFactory.getCurrentSession();
-            session.update(routeModel);
-            return true;
-        }catch (Exception e){
-            logger.error(e.toString());
-            return false;
-        }
-    }
 }

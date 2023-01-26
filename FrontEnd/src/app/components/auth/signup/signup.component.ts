@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginModel} from "../../../shared/models/loginModel";
 import {UserModel} from "../../../shared/models/userModel";
 import {Router} from "@angular/router";
-import {AdminService} from "../../../services/admin.service";
+import {AuthService} from "../../../services/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -12,13 +11,13 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class SignupComponent implements OnInit{
   private userDetail = {} as UserModel;
+  error: string = null;
 
-  constructor(private adminService : AdminService, private router : Router) { }
+  constructor(private authService : AuthService, private router : Router) { }
 
   ngOnInit() {
   }
 
-  // create the form object.
   form = new FormGroup({
     username : new FormControl('' , Validators.required),
     email : new FormControl('' , Validators.required),
@@ -37,15 +36,11 @@ export class SignupComponent implements OnInit{
       this.userDetail.password = this.form.value.password;
       this.userDetail.userRole = "2";
 
-      this.adminService.saveUserDetails(this.userDetail).subscribe(response => {
-        let result = response.json();
-          if(result > 0) {
-            console.log(response);
-            console.log(result);
-            this.router.navigate(['/']);
+      this.authService.saveUserDetails(this.userDetail).subscribe(response => {
+          if(response.status) {
+            this.router.navigate(['/login']);
           } else {
-            console.log("Alert")
-            alert("error occur while registring User. please try after sometime.")
+            this.error = response.message;
           }
       })
     }

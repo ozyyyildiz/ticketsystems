@@ -8,16 +8,9 @@ import { RoutesComponent } from './components/routes/routes.component';
 import { RoutesDetailComponent } from './components/routes/routes-detail/routes-detail.component';
 import { RoutesListComponent } from './components/routes/routes-list/routes-list.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
-import { TicketDetailComponent } from './components/tickets/ticket-detail/ticket-detail.component';
 import { UsersComponent } from './components/admin/users/users.component';
 import { UserDetailComponent } from './components/admin/users/user-detail/user-detail.component';
 import { UserListComponent } from './components/admin/users/user-list/user-list.component';
-import { VehiclesComponent } from './components/vehicles/vehicles.component';
-import { VehicleDetailComponent } from './components/vehicles/vehicle-detail/vehicle-detail.component';
-import { VehicleListComponent } from './components/vehicles/vehicle-list/vehicle-list.component';
-import { SeatsComponent } from './components/vehicles/seats/seats.component';
-import { SeatDetailComponent } from './components/vehicles/seats/seat-detail/seat-detail.component';
-import { SeatListComponent } from './components/vehicles/seats/seat-list/seat-list.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { RoutesStartComponent } from './components/routes/routes-start/routes-start.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -40,6 +33,8 @@ import { TicketListComponent } from './components/tickets/ticket-list/ticket-lis
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import {AuthInterceptorService} from "./services/auth-interceptor.service";
+import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
+import {AdminSeatListComponent} from "./components/admin/seat-list/seat-list.component";
 
 @NgModule({
   declarations: [
@@ -50,18 +45,11 @@ import {AuthInterceptorService} from "./services/auth-interceptor.service";
     RoutesListComponent,
     RoutesStartComponent,
     TicketsComponent,
-    TicketDetailComponent,
     TicketBuyComponent,
     UsersComponent,
     UserDetailComponent,
     UserListComponent,
     UserCreateComponent,
-    VehiclesComponent,
-    VehicleDetailComponent,
-    VehicleListComponent,
-    SeatsComponent,
-    SeatDetailComponent,
-    SeatListComponent,
     AdminComponent,
     TableFilterPipe,
     ResponseModalComponent,
@@ -76,7 +64,8 @@ import {AuthInterceptorService} from "./services/auth-interceptor.service";
     UserTicketsComponent,
     TicketListComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    AdminSeatListComponent
   ],
     imports: [
         BrowserModule,
@@ -87,7 +76,9 @@ import {AuthInterceptorService} from "./services/auth-interceptor.service";
         NgbDatepicker
     ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService
   ],
   bootstrap: [AppComponent]
 })

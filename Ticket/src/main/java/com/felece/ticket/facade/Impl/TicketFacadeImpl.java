@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Component
 public class TicketFacadeImpl implements TicketFacade {
@@ -36,9 +35,9 @@ public class TicketFacadeImpl implements TicketFacade {
     }
 
     @Override
-    public List<TicketDto> getTicketByUserId(String id) {
+    public List<TicketDto> getTicketByUsername(String username) {
         List<TicketDto> ticketDtoList = new ArrayList<>();
-        ticketService.getTicketModelsByUserId(Long.parseLong(id)).stream().forEach(ticketModel -> {
+        ticketService.getTicketModelsByUsername(username).stream().forEach(ticketModel -> {
             TicketDto ticketDto = ticketPopulator.modelToDto(ticketModel);
             ticketDtoList.add(ticketDto);
         });
@@ -62,11 +61,13 @@ public class TicketFacadeImpl implements TicketFacade {
         responseMessage.setMessage("Bilet oluşturulurken bir hata meydana geldi.");
         TicketModel ticketModel = ticketPopulator.dtoToModelForSave(ticketRequest);
         if (ticketService.saveTicketModel(ticketModel)) {
-            SeatModel seatModel = ticketModel.getSeatNumber();
-            if(ticketRequest.getTicketStatus()=="1"){
-                seatModel.setStatus(seatService.getSeatStatus(Long.parseLong(ticketRequest.getTicketStatus())));
-            }else if(ticketRequest.getTicketStatus()=="2"){
-                seatModel.setStatus(seatService.getSeatStatus(Long.parseLong(ticketRequest.getTicketStatus())));
+            SeatModel seatModel = seatService.getSeatModel(Long.parseLong(ticketRequest.getSeat()));
+            if(ticketRequest.getTicketStatus().equals("RESERVED")){
+                seatModel.setStatus(seatService.getSeatStatusByName(ticketRequest.getTicketStatus()));
+                seatService.saveSeat(seatModel);
+            }else if(ticketRequest.getTicketStatus().equals("PURCHASED")){
+                seatModel.setStatus(seatService.getSeatStatusByName("OCCUPIED"));
+                seatService.saveSeat(seatModel);
             }else{
                 responseMessage.setStatus(false);
                 responseMessage.setMessage("Koltuk rezerve edilirken bir hata oluştu.");
@@ -83,8 +84,18 @@ public class TicketFacadeImpl implements TicketFacade {
         ResponseMessage responseMessage = new ResponseMessage();
         responseMessage.setStatus(false);
         responseMessage.setMessage("Bilet güncellenirken bir hata oluştu.");
+        SeatModel seatModel = ticketService.getTicketModel(Long.parseLong(ticketDto.getId())).getSeatNumber();
         TicketModel ticketModel = ticketPopulator.dtoToModel(ticketDto);
+        ticketModel.setSeatNumber(seatModel);
+        if(ticketDto.getTicketStatus().equals("CANCELED")||ticketDto.getTicketStatus().equals("POSTPONED")){
+            ticketModel.setSeatNumber(null);
+            ticketModel.setVehicle(null);
+        }
         if(ticketService.saveTicketModel(ticketModel)){
+            if(seatModel != null){
+                seatModel.setStatus(seatService.getSeatStatus(Long.parseLong("1")));
+                seatService.saveSeat(seatModel);
+            }
             responseMessage.setStatus(true);
             responseMessage.setMessage("Bilet başarıyla güncellendi.");
         }

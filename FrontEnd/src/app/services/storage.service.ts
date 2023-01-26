@@ -1,37 +1,26 @@
 import { Injectable } from '@angular/core';
-
-const USER_KEY = 'auth-user';
+import {Observable, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
+
+  private storageSub = new Subject<String>();
   constructor() {}
 
-  clean(): void {
+  watchStorage(): Observable<any> {
+    return this.storageSub.asObservable();
+  }
+
+  public login(authToken){
+    localStorage.setItem("token", authToken);
+    this.storageSub.next("changed");
+  }
+
+  public logOut(){
+    window.localStorage.clear();
     window.sessionStorage.clear();
-  }
-
-  public saveUser(user: any): void {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
-  }
-
-  public getUser(): any {
-    const user = window.sessionStorage.getItem(USER_KEY);
-    if (user) {
-      return JSON.parse(user);
-    }
-
-    return {};
-  }
-
-  public isLoggedIn(): boolean {
-    const user = window.sessionStorage.getItem(USER_KEY);
-    if (user) {
-      return true;
-    }
-
-    return false;
+    this.storageSub.next("changed");
   }
 }

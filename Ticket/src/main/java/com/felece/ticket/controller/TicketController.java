@@ -22,9 +22,9 @@ public class TicketController {
         return ticketFacade.getAllTickets();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/userTicket/{id}")
-    public List<TicketDto> getUserTicketList(@PathVariable("id") String id){
-        return ticketFacade.getTicketByUserId(id);
+    @RequestMapping(method = RequestMethod.GET, value = "/userTicket/{username}")
+    public List<TicketDto> getUserTicketList(@PathVariable String username){
+        return ticketFacade.getTicketByUsername(username);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/ticket/{id}")

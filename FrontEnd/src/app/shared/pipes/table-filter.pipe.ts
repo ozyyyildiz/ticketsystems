@@ -7,12 +7,6 @@ export class TableFilterPipe implements PipeTransform {
 
   transform(list: any[], value: string){
     return value ? list.filter(item => Object.keys(item).some(k => item[k] != null && item[k].toString().toLowerCase().includes(value.toLowerCase()))) : list;
-
-    // return value ? list.filter(item=>{
-    //   return JSON.stringify(item).toLowerCase().includes(value.toLowerCase());
-    // }) : list;
-
-    // return value ? list.filter(item => item.includes(value)) : list;
   }
 
 }

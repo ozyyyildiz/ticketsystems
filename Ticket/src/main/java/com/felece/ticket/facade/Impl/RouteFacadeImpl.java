@@ -8,7 +8,6 @@ import com.felece.ticket.model.VehicleModel;
 import com.felece.ticket.populators.RoutePopulator;
 import com.felece.ticket.populators.VehiclePopulator;
 import com.felece.ticket.request.RouteRequest;
-import com.felece.ticket.request.VehicleRequest;
 import com.felece.ticket.response.ResponseMessage;
 import com.felece.ticket.response.RouteResponse;
 import com.felece.ticket.service.RouteService;

@@ -1,9 +1,7 @@
 package com.felece.ticket.populators.Impl;
 
 import com.felece.ticket.dto.UserDto;
-import com.felece.ticket.dto.UserRoleDto;
 import com.felece.ticket.model.UserModel;
-import com.felece.ticket.model.UserRoleModel;
 import com.felece.ticket.populators.UserPopulator;
 import com.felece.ticket.request.UserRequest;
 import com.felece.ticket.service.UserService;
@@ -27,7 +25,7 @@ public class UserPopulatorImpl implements UserPopulator {
         userModel.setId(Long.parseLong(userDto.getId()));
         userModel.setUserName(userDto.getUserName());
         userModel.setEmail(userDto.getEmail());
-        userModel.setPassword(userDto.getPassword());
+        userModel.setPassword(userService.getUserModel(Long.parseLong(userDto.getId())).getPassword());
         userModel.setRole(userService.getUserRoleModel(Long.parseLong(userDto.getUserRole())));
         return userModel;
     }
@@ -38,7 +36,6 @@ public class UserPopulatorImpl implements UserPopulator {
         userDto.setId(String.valueOf(userModel.getId()));
         userDto.setUserName(userModel.getUserName());
         userDto.setEmail(userModel.getEmail());
-        userDto.setPassword(userModel.getPassword());
         userDto.setUserRole(String.valueOf(userModel.getRole().getId()));
         return userDto;
     }

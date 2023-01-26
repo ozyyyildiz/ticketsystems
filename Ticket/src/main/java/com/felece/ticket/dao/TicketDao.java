@@ -11,7 +11,7 @@ public interface TicketDao {
 
     List<TicketModel> getAllTicketModel();
 
-    List<TicketModel> getTicketModelsByUserId(Long id);
+    List<TicketModel> getTicketModelsByUsername(String username);
 
     List<TicketModel> getVehicleTicket(Long id);
 

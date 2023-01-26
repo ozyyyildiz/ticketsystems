@@ -9,7 +9,7 @@ public interface TicketService {
 
     TicketModel getTicketModel(Long id);
 
-    List<TicketModel> getTicketModelsByUserId(Long id);
+    List<TicketModel> getTicketModelsByUsername(String username);
 
     List<TicketModel> getAllTicketModel();
 

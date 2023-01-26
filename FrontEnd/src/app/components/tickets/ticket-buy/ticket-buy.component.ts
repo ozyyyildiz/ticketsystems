@@ -30,7 +30,7 @@ export class TicketBuyComponent implements OnInit{
     this.ticket.vehicle = this.vehicle;
     this.ticket.seat = this.seat;
     this.ticketService.onBuyTicket(this.ticket).subscribe(responseData=> {
-      console.log(responseData);
+      window.location.reload();
     })
   }
 
@@ -40,7 +40,7 @@ export class TicketBuyComponent implements OnInit{
     this.ticket.vehicle = this.vehicle;
     this.ticket.seat = this.seat;
     this.ticketService.onReserveTicket(this.ticket).subscribe(responseData=> {
-      console.log(responseData);
+      window.location.reload();
     });
   }
 

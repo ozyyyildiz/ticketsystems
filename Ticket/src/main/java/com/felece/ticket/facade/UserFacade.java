@@ -1,7 +1,6 @@
 package com.felece.ticket.facade;
 
 import com.felece.ticket.dto.UserDto;
-import com.felece.ticket.dto.UserRoleDto;
 import com.felece.ticket.request.UserRequest;
 import com.felece.ticket.response.ResponseMessage;
 

@@ -1,7 +1,6 @@
 package com.felece.ticket.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "SeatStatus")

@@ -15,7 +15,7 @@ export class UserCreateComponent {
 
   onSubmit(form: NgForm){
     this.userService.createUser(form.value).subscribe(responseData => {
-      console.log(responseData);
+      window.location.reload();
     })
   }
 

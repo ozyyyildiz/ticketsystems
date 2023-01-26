@@ -14,7 +14,7 @@ export class AdminRoutesCreateComponent {
 
   onSubmit(form: NgForm){
     this.routesService.saveRoute(form.value).subscribe(responseData => {
-      console.log(responseData);
+      window.location.reload();
     })
   }
 

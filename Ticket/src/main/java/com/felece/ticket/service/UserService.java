@@ -4,7 +4,6 @@ import com.felece.ticket.model.UserModel;
 import com.felece.ticket.model.UserRoleModel;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 
@@ -18,7 +17,7 @@ public interface UserService {
 
     UserRoleModel getUserRoleModel(Long id);
 
-    Optional<UserModel> findByUsername(String username);
+    UserModel getByUsername(String username);
 
     Boolean existsByUsername(String username);
 

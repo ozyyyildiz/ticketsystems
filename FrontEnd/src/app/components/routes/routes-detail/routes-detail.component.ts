@@ -34,7 +34,6 @@ export class RoutesDetailComponent implements OnInit{
       })
     ).subscribe(routeVehicles=> {
       this.vehicleList = routeVehicles;
-      console.log(routeVehicles);
     });
   }
 }

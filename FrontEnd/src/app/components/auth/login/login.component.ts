@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import {AdminService} from "../../../services/admin.service";
+import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginModel} from "../../../shared/models/loginModel";
+import {StorageService} from "../../../services/storage.service";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Component({
   selector: 'app-login',
@@ -12,15 +14,12 @@ import {LoginModel} from "../../../shared/models/loginModel";
 export class LoginComponent {
 
   loginDetail = {} as LoginModel;
+  message: string = null;
 
-  constructor(private adminService : AdminService, private router : Router) { }
+  constructor(private authService : AuthService, private router : Router, private storageService: StorageService, private jwtHelper: JwtHelperService) { }
 
   ngOnInit() {
-    if((this.adminService.isLoggedIn()) ) {
-      this.router.navigate(['/' , localStorage.getItem('id')]);
-    } else {
-      this.router.navigate(['/login']);
-    }
+
   }
   form = new FormGroup({
     username : new FormControl('' , Validators.required),
@@ -30,15 +29,12 @@ export class LoginComponent {
   Login(LoginInformation) {
     this.loginDetail.username = this.form.value.username
     this.loginDetail.password = this.form.value.password
-
-    this.adminService.login(this.loginDetail).subscribe(response => {
-      console.log(response);
+    this.authService.login(this.loginDetail).subscribe(response => {
       if(response) {
-        localStorage.setItem("token" , JSON.stringify(response.authToken));
-        console.log(response);
+        this.storageService.login(response.authToken);
         this.router.navigateByUrl("/routes");
       }else {
-        alert("please register before login Or Invalid combination of Username and password");
+        this.message = "Kullanıcı adı ya da şifre hatalı";
       }});
   }
 }

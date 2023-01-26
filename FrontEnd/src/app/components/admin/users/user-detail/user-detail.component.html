@@ -13,11 +13,6 @@
             <input [ngModel]="loadedUser.email" type="text" id="email" class="form-control" ngModel name="email" required email #email="ngModel">
             <small *ngIf="!email.valid && email.touched">Lütfen geçerli bir email giriniz.</small>
           </div>
-          <div class="form-group">
-            <label for="password">Parola</label>
-            <input [ngModel]="loadedUser.password"  type="password" id="password" class="form-control" ngModel name="password" required #password="ngModel">
-            <small *ngIf="!password.valid && password.touched">Lütfen geçerli bir parola giriniz.</small>
-          </div>
         </div>
         <div class="form-group">
           <label for="userRole">Kullanıcı Rolü</label>

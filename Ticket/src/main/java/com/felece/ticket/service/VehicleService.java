@@ -1,6 +1,5 @@
 package com.felece.ticket.service;
 
-import com.felece.ticket.model.SeatModel;
 import com.felece.ticket.model.VehicleModel;
 
 import java.util.List;

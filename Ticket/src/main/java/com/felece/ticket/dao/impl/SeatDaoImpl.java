@@ -35,10 +35,10 @@ public class SeatDaoImpl implements SeatDao {
     }
 
     @Override
-    public List<SeatModel> getAllSeats() {
+    public List<SeatModel> getAllEmptySeats() {
         try{
             Session session = sessionFactory.getCurrentSession();
-            return session.createQuery("FROM SeatModel").list();
+            return session.createQuery("FROM SeatModel where status.seatStatus = :status ").setParameter("status", "EMPTY").list();
         }catch (Exception e){
             logger.error(e.toString());
             return Collections.emptyList();
@@ -49,7 +49,7 @@ public class SeatDaoImpl implements SeatDao {
     public SeatModel getSeatModel(Long id) {
         try{
             Session session = sessionFactory.getCurrentSession();
-            return session.load(SeatModel.class, id);
+            return session.get(SeatModel.class, id);
         }catch (Exception e){
             logger.error(e.toString());
             return null;
@@ -60,7 +60,7 @@ public class SeatDaoImpl implements SeatDao {
     public SeatStatusModel getSeatStatus(Long id) {
         try{
             Session session = sessionFactory.getCurrentSession();
-            return session.load(SeatStatusModel.class, id);
+            return session.get(SeatStatusModel.class, id);
         }catch (Exception e){
             logger.error(e.toString());
             return null;

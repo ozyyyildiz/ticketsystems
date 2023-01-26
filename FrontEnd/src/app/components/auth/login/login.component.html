@@ -1,21 +1,25 @@
+<h2>Giriş Sayfası</h2>
+<div class="alert alert-danger" *ngIf="message">
+  <p>{{message}}</p>
+</div>
 <form [formGroup]="form" #LoginInformation (ngSubmit)="Login(LoginInformation)">
   <div class="row">
     <div class=" col-md-offset-1 col-md-4">
-      <label for="username"> username </label>
+      <label for="username"> Kullanıcı Adı </label>
       <input id="username" formControlName="username" class="form-control" type="text">
     </div>
   </div>
 
   <div class="row">
     <div class=" col-md-offset-1 col-md-4">
-      <label for="password"> Password </label>
+      <label for="password"> Şifre </label>
       <input id="password" formControlName="password" class="form-control" type="password">
     </div>
   </div>
 
   <div class="row" style="margin-top: 40px;">
     <div class="col-md-offset-1 col-md-4">
-      <button class="btn btn-md btn-primary btn-style">Login</button>
+      <button class="btn btn-md btn-primary btn-style">Giriş Yap</button>
     </div>
   </div>
 </form>

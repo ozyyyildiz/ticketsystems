@@ -31,7 +31,6 @@ export class AdminVehiclesDetailComponent implements OnInit{
   ngOnInit(): void {
     this.vehicleService.getSingleVehicle(this.id).subscribe((vehicle: VehicleModel)=>{
       this.loadedVehicle = vehicle
-      console.log(this.loadedVehicle);
     });
     this.routeService.getAllRoutes().subscribe(routeList => {
       this.routeList = routeList;
@@ -41,9 +40,8 @@ export class AdminVehiclesDetailComponent implements OnInit{
   onUpdate(form: NgForm){
     this.loadedVehicle = form.value;
     this.loadedVehicle.id = this.id;
-    console.log(this.loadedVehicle);
     this.vehicleService.updateVehicle(this.loadedVehicle).subscribe(responseData => {
-      console.log(responseData);
+      window.location.reload();
     })
   }
 

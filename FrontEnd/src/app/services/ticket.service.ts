@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import {TicketModel} from "../shared/models/ticketModel";
 import {map} from 'rxjs/operators'
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ export class TicketService {
 
   private baseUrl = 'http://localhost:8080/tickets';
 
-  constructor(private http: HttpClient) { }
+  username: string;
+
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
   getAllTickets(){
     return this.http.get(this.baseUrl + '/')
@@ -43,13 +46,14 @@ export class TicketService {
 
   onBuyTicket(ticketData: TicketModel){
     ticketData.ticketStatus = "PURCHASED"
-    ticketData.user = "2"
-    console.log(ticketData);
+    let token = this.jwtHelper.decodeToken(localStorage.getItem("token"))
+    ticketData.user = token.sub;
     return this.http.post(this.baseUrl + "/saveTicket", ticketData);
   }
   onReserveTicket(ticketData: TicketModel){
     ticketData.ticketStatus = "RESERVED"
-    ticketData.user = "2"
+    let token = this.jwtHelper.decodeToken(localStorage.getItem("token"))
+    ticketData.user = token.sub;
     return this.http.post(this.baseUrl + "/saveTicket", ticketData);
   }
 }

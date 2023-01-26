@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -97,6 +96,18 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public UserModel getByUsername(String username) {
+        try{
+            Session session = sessionFactory.getCurrentSession();
+            return (UserModel) session.createQuery("FROM UserModel WHERE userName = :username")
+                    .setParameter("username", username).getSingleResult();
+        }catch (Exception e){
+            logger.error(e.toString());
+            return null;
+        }
+    }
+
+    @Override
     public Boolean existsByUsername(String username) {
         try{
             Session session = sessionFactory.getCurrentSession();
@@ -118,9 +129,9 @@ public class UserDaoImpl implements UserDao {
             Session session = sessionFactory.getCurrentSession();
             UserModel userModel = (UserModel) session.createQuery("FROM UserModel WHERE email = :email").setParameter("email", email).getSingleResult();
             if(userModel != null){
-                return false;
-            }else {
                 return true;
+            }else {
+                return false;
             }
         }catch (Exception e){
             logger.error(e.toString());

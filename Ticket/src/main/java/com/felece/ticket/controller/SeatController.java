@@ -1,7 +1,7 @@
 package com.felece.ticket.controller;
 
-import com.felece.ticket.dto.SeatDto;
 import com.felece.ticket.facade.SeatFacade;
+import com.felece.ticket.response.SeatResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ public class SeatController {
     private SeatFacade seatFacade;
 
     @RequestMapping(value = "/")
-    private List<SeatDto> gelAllSeats(){
-        return seatFacade.getAllSeats();
+    private List<SeatResponse> gelAllEmptySeats(){
+        return seatFacade.getAllEmptySeats();
     }
 }

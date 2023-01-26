@@ -31,9 +31,8 @@ export class AdminVehiclesCreateComponent implements OnInit{
   onSubmit(form: NgForm){
     let timeList = form.value.expTime.toString().split('T',);
     form.value.expTime = timeList[0] + " " + timeList[1]+ ":00";
-    console.log(form.value.expTime = timeList[0] + " " + timeList[1]+ ":00");
     this.vehicleService.saveVehicle(form.value).subscribe(responseData => {
-      console.log(responseData);
+      window.location.reload();
     })
   }
 

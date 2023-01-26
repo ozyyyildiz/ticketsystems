@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
-import {TicketModel} from "../shared/models/ticketModel";
-import {SeatModel} from "../shared/models/seatModel";
-import {UserModel} from "../shared/models/userModel";
+import {SeatResponseModel} from "../shared/models/seatResponseModel";
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +12,10 @@ export class SeatService {
 
   constructor(private http: HttpClient) { }
 
-  getAllSeats(){
+  getAllEmptySeats(){
     return this.http.get(this.baseUrl + '/')
-      .pipe(map((responseData:SeatModel)=>{
-        const seatsArray: SeatModel[] = [];
+      .pipe(map((responseData:SeatResponseModel)=>{
+        const seatsArray: SeatResponseModel[] = [];
         for(const key in responseData){
           seatsArray.push({ ...responseData[key] });
         }

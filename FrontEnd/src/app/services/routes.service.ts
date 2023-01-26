@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpBackend, HttpClient} from "@angular/common/http";
 import {RouteModel} from "../shared/models/routeModel";
 import {map} from "rxjs/operators";
 
@@ -10,10 +10,14 @@ export class RoutesService {
 
   baseUrl = 'http://localhost:8080/routes'
 
-  constructor(private http: HttpClient) { }
+  private httpClient: HttpClient;
+
+  constructor(private http: HttpClient, handler: HttpBackend) {
+    this.httpClient = new HttpClient(handler);
+  }
 
   getAllRoutes(){
-    return this.http.get(this.baseUrl + '/')
+    return this.httpClient.get(this.baseUrl + '/')
       .pipe(map((routeData: RouteModel) => {
         const routeList: RouteModel[] = [];
         for(const key in routeData){
@@ -24,7 +28,7 @@ export class RoutesService {
   }
 
   getSingleRoute(id: string){
-    return this.http.get(this.baseUrl + '/route' + id)
+    return this.httpClient.get(this.baseUrl + '/route/' + id)
   }
 
   saveRoute(route: RouteModel){

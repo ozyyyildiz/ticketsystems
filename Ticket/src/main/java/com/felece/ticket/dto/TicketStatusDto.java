@@ -1,7 +1,5 @@
 package com.felece.ticket.dto;
 
-import java.util.List;
-
 public class TicketStatusDto {
 
     private String Id;

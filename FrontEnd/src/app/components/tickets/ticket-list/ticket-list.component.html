@@ -17,11 +17,13 @@
     <tr *ngFor="let ticket of loadedTickets | tableFilter: filterData">
       <td>{{ticket.name}}</td>
       <td>{{ticket.surname}}</td>
-      <td>{{ticket.vehicle}}</td>
-      <td>{{ticket.seatId}}</td>
+      <td *ngIf="ticket.vehicle != null">{{ticket.vehicle}}</td>
+      <td *ngIf="ticket.vehicle == null">Araç Bulunamadı</td>
+      <td *ngIf="ticket.seatId != null">{{ticket.seatId}}</td>
+      <td *ngIf="ticket.seatId == null">Koltuk Bulunamadı</td>
       <td>{{ticket.ticketStatus}}</td>
-      <td><button class="btn btn-danger" (click)="onTicketCancel(ticket.id)" style="margin-right: 5px;">İptal Et</button>
-        <button class="btn btn-secondary" (click)="onTicketPostPone(ticket.id)" style="margin-right: 5px;">Ertele</button>
+      <td><button class="btn btn-danger" *ngIf="ticket.ticketStatus === 'PURCHASED' || ticket.ticketStatus === '2' || ticket.ticketStatus === 'POSTPONED' || ticket.ticketStatus === '4'" (click)="onTicketCancel(ticket.id)" style="margin-right: 5px;">İptal Et</button>
+        <button class="btn btn-secondary" *ngIf="ticket.ticketStatus === 'PURCHASED' || ticket.ticketStatus === '2'" (click)="onTicketPostPone(ticket.id)" style="margin-right: 5px;">Ertele</button>
         <button class="btn btn-primary" *ngIf="ticket.ticketStatus === 'RESERVED'" (click)="onTicketBuy(ticket.id)" style="margin-right: 5px;">Satın Al</button></td>
     </tr>
     <ng-template #elseBlock><td>Bilet Bulunamadı</td></ng-template>

@@ -5,6 +5,7 @@ import com.felece.ticket.facade.UserFacade;
 import com.felece.ticket.request.LoginRequest;
 import com.felece.ticket.request.UserRequest;
 import com.felece.ticket.response.AuthResponse;
+import com.felece.ticket.response.ResponseMessage;
 import com.felece.ticket.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,12 +35,17 @@ public class AuthController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/register")
     @ResponseBody
-    public ResponseEntity<String> register(@RequestBody UserRequest userRequest){
-        if(userService.existsByUsername(userRequest.getUserName()) && userService.existsByEmail(userRequest.getEmail())){
-            return new ResponseEntity<>("Username or Email is already in use", HttpStatus.BAD_REQUEST);
+    public ResponseMessage register(@RequestBody UserRequest userRequest){
+        ResponseMessage responseMessage = new ResponseMessage();
+        if(userService.existsByUsername(userRequest.getUserName()) || userService.existsByEmail(userRequest.getEmail())){
+            responseMessage.setStatus(false);
+            responseMessage.setMessage("Kullanıcı adı ya da email kullanımda");
+            return responseMessage;
         }
         userFacade.saveUser(userRequest);
-        return new ResponseEntity<>("User Registered Successfully", HttpStatus.OK);
+        responseMessage.setStatus(true);
+        responseMessage.setMessage("Kullanıcı Oluşturuldu");
+        return responseMessage;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/login")

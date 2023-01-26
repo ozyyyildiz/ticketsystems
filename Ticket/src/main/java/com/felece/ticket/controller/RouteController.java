@@ -6,6 +6,7 @@ import com.felece.ticket.request.RouteRequest;
 import com.felece.ticket.response.ResponseMessage;
 import com.felece.ticket.response.RouteResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,10 +21,11 @@ public class RouteController {
 
     @RequestMapping(value = "/")
     public List<RouteDto> getRoutes(){
+        SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         return routeFacade.getAllRoutes();
     }
 
-    @RequestMapping(value = "/route{id}")
+    @RequestMapping(value = "/route/{id}")
     public RouteResponse getRoute(@PathVariable("id") String id){
         return routeFacade.getRoute(id);
     }

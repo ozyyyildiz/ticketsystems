@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {UserModel} from "./shared/models/userModel";
-import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-root',

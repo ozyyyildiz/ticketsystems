@@ -23,7 +23,7 @@ export class AdminVehiclesListComponent implements OnInit{
 
   onDeleteVehicle(id){
     this.vehicleService.deleteVehicle(id).subscribe(response => {
-      console.log(response);
+      window.location.reload();
     })
   }
 

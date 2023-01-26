@@ -1,8 +1,6 @@
 package com.felece.ticket.facade;
 
 import com.felece.ticket.dto.TicketDto;
-import com.felece.ticket.dto.TicketStatusDto;
-import com.felece.ticket.model.TicketStatusModel;
 import com.felece.ticket.request.TicketRequest;
 import com.felece.ticket.response.ResponseMessage;
 
@@ -12,7 +10,7 @@ public interface TicketFacade {
 
     TicketDto getTicket(String id);
 
-    List<TicketDto> getTicketByUserId(String id);
+    List<TicketDto> getTicketByUsername(String username);
 
     List<TicketDto> getAllTickets();
 

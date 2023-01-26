@@ -1,0 +1,23 @@
+<div class="container" style="margin-top: 10px">
+  <div class="form-group float-right">
+    <input placeholder="Filtreleme" type="text" class="form-control" [(ngModel)]="filterData">
+  </div>
+
+  <br/>
+  <table class="table table-bordered">
+    <thead>
+    <th>Koltuk Numarası</th>
+    <th>Rota</th>
+    <th>Araç Plakası</th>
+    <th>Statü</th>
+    </thead>
+    <tbody *ngIf="loadedSeats.length >= 1">
+    <tr *ngFor="let seat of loadedSeats | tableFilter: filterData">
+      <td>{{seat.seatNumber}}</td>
+      <td>{{seat.route}}</td>
+      <td>{{seat.vehicle}}</td>
+      <td>{{seat.status}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

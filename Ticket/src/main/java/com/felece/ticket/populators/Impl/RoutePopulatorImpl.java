@@ -4,7 +4,6 @@ import com.felece.ticket.dto.RouteDto;
 import com.felece.ticket.model.RouteModel;
 import com.felece.ticket.populators.RoutePopulator;
 import com.felece.ticket.request.RouteRequest;
-import com.felece.ticket.utils.DateConverter;
 
 public class RoutePopulatorImpl implements RoutePopulator {
 

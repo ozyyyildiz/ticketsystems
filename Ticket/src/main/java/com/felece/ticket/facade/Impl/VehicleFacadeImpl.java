@@ -2,14 +2,11 @@ package com.felece.ticket.facade.Impl;
 
 import com.felece.ticket.dto.VehicleDto;
 import com.felece.ticket.facade.VehicleFacade;
-import com.felece.ticket.model.RouteModel;
 import com.felece.ticket.model.SeatModel;
-import com.felece.ticket.model.UserModel;
 import com.felece.ticket.model.VehicleModel;
 import com.felece.ticket.populators.VehiclePopulator;
 import com.felece.ticket.request.VehicleRequest;
 import com.felece.ticket.response.ResponseMessage;
-import com.felece.ticket.service.RouteService;
 import com.felece.ticket.service.SeatService;
 import com.felece.ticket.service.TicketService;
 import com.felece.ticket.service.VehicleService;
@@ -100,15 +97,6 @@ public class VehicleFacadeImpl implements VehicleFacade {
             responseMessage.setMessage("Araç başarıyla silindi");
         }
         return responseMessage;
-//        if(!ticketService.getVehicleTicket(Long.parseLong(id)).isEmpty()){
-//            ticketService.getVehicleTicket(Long.parseLong(id)).stream().forEach(ticketModel -> {
-//                ticketModel.setTicketStatus(ticketService.getTicketStatusByName(TICKET_STATUS_CANCELED));
-//                ticketService.saveTicketModel(ticketModel);
-//            });
-//        }
-//        if(vehicleService.getVehicleModel(Long.parseLong(id)).getRoute() != null){
-//            RouteModel routeModel = vehicleService.getVehicleModel(Long.parseLong(id)).getRoute();
-//        }
     }
 
     @Override

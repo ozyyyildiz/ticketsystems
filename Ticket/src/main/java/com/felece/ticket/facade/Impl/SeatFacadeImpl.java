@@ -1,10 +1,7 @@
 package com.felece.ticket.facade.Impl;
 
-import com.felece.ticket.dto.SeatDto;
 import com.felece.ticket.facade.SeatFacade;
-import com.felece.ticket.model.SeatModel;
-import com.felece.ticket.populators.SeatPopulator;
-import com.felece.ticket.request.SeatRequest;
+import com.felece.ticket.response.SeatResponse;
 import com.felece.ticket.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,41 +15,19 @@ public class SeatFacadeImpl implements SeatFacade {
     @Autowired
     private SeatService seatService;
 
-    @Autowired
-    private SeatPopulator seatPopulator;
-
     @Override
-    public SeatDto getSeat(String id) {
-        SeatModel seatModel = seatService.getSeatModel(Long.parseLong(id));
-        SeatDto seatDto = seatPopulator.modelToDto(seatModel);
-        return seatDto;
-    }
-
-    @Override
-    public List<SeatDto> getAllSeats() {
-        List<SeatDto> seatDtoList = new ArrayList<>();
-        seatService.getAllSeats().stream().forEach(seatModel -> {
-            seatDtoList.add(seatPopulator.modelToDto(seatModel));
+    public List<SeatResponse> getAllEmptySeats() {
+        List<SeatResponse> seatResponseList = new ArrayList<>();
+        seatService.getAllEmptySeats().stream().forEach(seatModel -> {
+            SeatResponse seatResponse = new SeatResponse();
+            seatResponse.setId(String.valueOf(seatModel.getId()));
+            seatResponse.setSeatNumber(String.valueOf(seatModel.getSeatNumber()));
+            seatResponse.setStatus(seatModel.getStatus().getStatus());
+            String route = seatModel.getVehicle().getRoute().getToCity() + " - " + seatModel.getVehicle().getRoute().getFromCity();
+            seatResponse.setRoute(route);
+            seatResponse.setVehicle(seatModel.getVehicle().getLicensePlate());
+            seatResponseList.add(seatResponse);
         });
-        return seatDtoList;
-    }
-
-    @Override
-    public List<SeatDto> getAllSeatsOfVehicle(String id) {
-        List<SeatDto> seatDtoList = new ArrayList<>();
-        seatService.getAllVehicleSeats(Long.parseLong(id)).stream().forEach(seatModel -> {
-            seatDtoList.add(seatPopulator.modelToDto(seatModel));
-        });
-        return seatDtoList;
-    }
-
-    @Override
-    public Boolean saveSeat(SeatRequest seatRequest) {
-        return null;
-    }
-
-    @Override
-    public Boolean updateSeat(SeatDto seatDto) {
-        return null;
+        return seatResponseList;
     }
 }

@@ -25,9 +25,8 @@ export class UserDetailComponent implements OnInit{
   onUpdate(form: NgForm){
     this.loadedUser = form.value;
     this.loadedUser.id = this.id;
-    console.log(this.loadedUser);
     this.userService.updateUser(this.loadedUser).subscribe(responseData => {
-      console.log(responseData);
+      window.location.reload();
     })
   }
 

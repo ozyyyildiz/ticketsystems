@@ -36,12 +36,14 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable().exceptionHandling()
+        http.cors().and().csrf().disable().exceptionHandling()
                 .authenticationEntryPoint(jwtEntryPoint)
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeRequests()
                 .antMatchers("/authentication/**")
+                .permitAll().antMatchers("/routes/")
+                .permitAll().antMatchers("/routes/route/**")
                 .permitAll().anyRequest()
                 .authenticated().and().httpBasic();
         http.addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);

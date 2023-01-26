@@ -16,8 +16,10 @@
     <tr *ngFor="let ticket of loadedTickets | tableFilter: filterData">
       <td>{{ticket.name}}</td>
       <td>{{ticket.surname}}</td>
-      <td>{{ticket.vehicle}}</td>
-      <td>{{ticket.seatId}}</td>
+      <td *ngIf="ticket.vehicle != null">{{ticket.vehicle}}</td>
+      <td *ngIf="ticket.vehicle == null">Araç Bulunamadı</td>
+      <td *ngIf="ticket.seatId != null">{{ticket.seatId}}</td>
+      <td *ngIf="ticket.seatId == null">Koltuk Bulunamadı</td>
       <td>{{ticket.ticketStatus}}</td>
     </tr>
     </tbody>

@@ -21,8 +21,8 @@ public class SeatServiceImpl implements SeatService {
     }
 
     @Override
-    public List<SeatModel> getAllSeats() {
-        return null;
+    public List<SeatModel> getAllEmptySeats() {
+        return seatDao.getAllEmptySeats();
     }
 
     @Override

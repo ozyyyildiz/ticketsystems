@@ -1,5 +1,7 @@
-<h2>SignUp form</h2>
-
+<h2>Kayıt Sayfası</h2>
+<div class="alert alert-danger" *ngIf="error">
+  <p>{{error}}</p>
+</div>
 <form [formGroup]="form" #UserInformation (ngSubmit)="UserForm(UserInformation)">
   <div class="row">
     <div class=" col-md-offset-1 col-md-4">
