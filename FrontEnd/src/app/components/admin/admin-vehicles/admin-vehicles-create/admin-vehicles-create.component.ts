@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {VehiclesService} from "../../../../services/vehicles.service";
 import {NgForm} from "@angular/forms";
 import {RoutesService} from "../../../../services/routes.service";
-import {RouteModel} from "../../../../shared/models/routeModel";
+import {RouteModel} from "../../../../models/routeModel";
 
 @Component({
   selector: 'app-admin-vehicles-create',

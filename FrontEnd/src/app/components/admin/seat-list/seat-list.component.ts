@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SeatService} from "../../../services/seat.service";
-import {SeatResponseModel} from "../../../shared/models/seatResponseModel";
+import {SeatResponseModel} from "../../../models/seatResponseModel";
 
 @Component({
   selector: 'app-seat-list',

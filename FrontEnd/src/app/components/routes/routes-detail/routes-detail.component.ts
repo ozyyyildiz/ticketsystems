@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {RoutesService} from "../../../services/routes.service";
-import {VehicleModel} from "../../../shared/models/vehicleModel";
+import {VehicleModel} from "../../../models/vehicleModel";
 import {map} from "rxjs/operators";
-import {RouteModel} from "../../../shared/models/routeModel";
+import {RouteModel} from "../../../models/routeModel";
 
 @Component({
   selector: 'app-routes-detail',

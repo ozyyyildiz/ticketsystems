@@ -1,4 +1,4 @@
-package com.felece.ticket.facade.Impl;
+package com.felece.ticket.facade.impl;
 
 import com.felece.ticket.dto.TicketDto;
 import com.felece.ticket.facade.TicketFacade;
@@ -29,9 +29,7 @@ public class TicketFacadeImpl implements TicketFacade {
 
     @Override
     public TicketDto getTicket(String id) {
-        TicketModel ticketModel = ticketService.getTicketModel(Long.parseLong(id));
-        TicketDto ticketDto = ticketPopulator.modelToDto(ticketModel);
-        return ticketDto;
+        return ticketPopulator.modelToDto(ticketService.getTicketModel(Long.parseLong(id)));
     }
 
     @Override

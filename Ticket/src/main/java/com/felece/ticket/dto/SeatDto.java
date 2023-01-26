@@ -2,7 +2,7 @@ package com.felece.ticket.dto;
 
 public class SeatDto {
 
-    private String Id;
+    private String id;
 
     private String seatNumber;
 
@@ -12,17 +12,17 @@ public class SeatDto {
     }
 
     public SeatDto(String id, String seatNumber, SeatStatusDto status) {
-        Id = id;
+        this.id = id;
         this.seatNumber = seatNumber;
         this.status = status;
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getSeatNumber() {

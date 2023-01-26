@@ -4,7 +4,7 @@ import java.util.List;
 
 public class VehicleDto {
 
-    private String Id;
+    private String id;
 
     private String licensePlate;
 
@@ -18,7 +18,7 @@ public class VehicleDto {
     }
 
     public VehicleDto(String id, String licensePlate, String expTime, RouteDto routeDto, List<SeatDto> seatDto) {
-        Id = id;
+        this.id = id;
         this.licensePlate = licensePlate;
         this.expTime = expTime;
         this.routeDto = routeDto;
@@ -26,11 +26,11 @@ public class VehicleDto {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getLicensePlate() {

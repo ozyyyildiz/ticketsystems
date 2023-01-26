@@ -8,7 +8,7 @@ public class SeatModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     private String seatNumber;
 
@@ -30,11 +30,11 @@ public class SeatModel {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getSeatNumber() {

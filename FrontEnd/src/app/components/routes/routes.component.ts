@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RouteModel} from "../../shared/models/routeModel";
+import {RouteModel} from "../../models/routeModel";
 import {RoutesService} from "../../services/routes.service";
 
 @Component({

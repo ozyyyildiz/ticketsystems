@@ -1,10 +1,5 @@
 package com.felece.ticket.request;
 
-import com.felece.ticket.dto.RouteDto;
-import com.felece.ticket.dto.SeatDto;
-
-import java.util.List;
-
 public class VehicleRequest {
 
     private String licensePlate;

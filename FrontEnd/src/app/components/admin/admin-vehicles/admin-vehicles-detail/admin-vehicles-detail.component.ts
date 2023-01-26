@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {VehiclesService} from "../../../../services/vehicles.service";
 import {ActivatedRoute} from "@angular/router";
-import {VehicleModel} from "../../../../shared/models/vehicleModel";
+import {VehicleModel} from "../../../../models/vehicleModel";
 import {NgForm} from "@angular/forms";
 import {RoutesService} from "../../../../services/routes.service";
-import {RouteModel} from "../../../../shared/models/routeModel";
+import {RouteModel} from "../../../../models/routeModel";
 
 @Component({
   selector: 'app-admin-vehicles-detail',

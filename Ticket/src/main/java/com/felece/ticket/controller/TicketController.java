@@ -17,34 +17,34 @@ public class TicketController {
     @Autowired
     private TicketFacade ticketFacade;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/")
+    @GetMapping(value = "/")
     public List<TicketDto> getTicketList(){
         return ticketFacade.getAllTickets();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/userTicket/{username}")
+    @GetMapping(value = "/userTicket/{username}")
     public List<TicketDto> getUserTicketList(@PathVariable String username){
         return ticketFacade.getTicketByUsername(username);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/ticket/{id}")
+    @GetMapping(value = "/ticket/{id}")
     public TicketDto getTicket(@PathVariable("id") String id){
         return ticketFacade.getTicket(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/saveTicket", produces = "application/json")
+    @PostMapping(value = "/saveTicket", produces = "application/json")
     @ResponseBody
     public ResponseMessage saveTicket(@RequestBody TicketRequest ticketRequest){
         return ticketFacade.saveTicket(ticketRequest);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/updateTicket")
+    @PostMapping(value = "/updateTicket")
     @ResponseBody
     public ResponseMessage updateTicket(@RequestBody TicketDto ticketDto){
         return ticketFacade.updateTicket(ticketDto);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/deleteTicket{id}")
+    @PostMapping(value = "/deleteTicket{id}")
     @ResponseBody
     public ResponseMessage deleteTicket(@PathVariable("id") String id){
         return ticketFacade.deleteTicket(id);

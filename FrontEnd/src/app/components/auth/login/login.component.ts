@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {LoginModel} from "../../../shared/models/loginModel";
+import {LoginModel} from "../../../models/loginModel";
 import {StorageService} from "../../../services/storage.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
 

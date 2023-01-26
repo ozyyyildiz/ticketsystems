@@ -26,13 +26,13 @@ public class SecurityConfig {
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl, JwtEntryPoint jwtEntryPoint) {
         this.userDetailsServiceImpl = userDetailsServiceImpl;
         this.jwtEntryPoint = jwtEntryPoint;
     }
-
-    @Autowired
-    private UserService userService;
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {

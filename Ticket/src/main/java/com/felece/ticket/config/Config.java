@@ -1,6 +1,6 @@
 package com.felece.ticket.config;
 
-import com.felece.ticket.populators.Impl.*;
+import com.felece.ticket.populators.impl.*;
 import com.felece.ticket.populators.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -25,28 +25,28 @@ import java.util.Properties;
 public class Config{
 
     @Value("${db.driver}")
-    private String DRIVER;
+    private String driver;
 
     @Value("${db.password}")
-    private String PASSWORD;
+    private String password;
 
     @Value("${db.url}")
-    private String URL;
+    private String url;
 
     @Value("${db.username}")
-    private String USERNAME;
+    private String username;
 
     @Value("${hibernate.dialect}")
-    private String DIALECT;
+    private String dialect;
 
     @Value("${hibernate.show_sql}")
-    private String SHOW_SQL;
+    private String show_sql;
 
     @Value("${hibernate.hbm2ddl.auto}")
-    private String HBM2DDL_AUTO;
+    private String hbm2ddl_auto;
 
     @Value("${entitymanager.packagesToScan}")
-    private String PACKAGES_TO_SCAN;
+    private String packages_to_scan;
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
@@ -63,10 +63,10 @@ public class Config{
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(DRIVER);
-        dataSource.setUrl(URL);
-        dataSource.setUsername(USERNAME);
-        dataSource.setPassword(PASSWORD);
+        dataSource.setDriverClassName(driver);
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
         return dataSource;
     }
 
@@ -74,11 +74,11 @@ public class Config{
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(PACKAGES_TO_SCAN);
+        sessionFactory.setPackagesToScan(packages_to_scan);
         Properties hibernateProperties = new Properties();
-        hibernateProperties.put("hibernate.dialect", DIALECT);
-        hibernateProperties.put("hibernate.show_sql", SHOW_SQL);
-        hibernateProperties.put("hibernate.hbm2ddl.auto", HBM2DDL_AUTO);
+        hibernateProperties.put("hibernate.dialect", dialect);
+        hibernateProperties.put("hibernate.show_sql", show_sql);
+        hibernateProperties.put("hibernate.hbm2ddl.auto", hbm2ddl_auto);
         hibernateProperties.put("hibernate.enable_lazy_load_no_trans", "true");
         sessionFactory.setHibernateProperties(hibernateProperties);
         return sessionFactory;

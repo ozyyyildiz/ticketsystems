@@ -2,7 +2,7 @@ package com.felece.ticket.dto;
 
 public class RouteDto {
 
-    private String Id;
+    private String id;
 
     private String fromCity;
 
@@ -12,17 +12,17 @@ public class RouteDto {
     }
 
     public RouteDto(String id, String fromCity, String toCity) {
-        Id = id;
+        this.id = id;
         this.fromCity = fromCity;
         this.toCity = toCity;
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getFromCity() {

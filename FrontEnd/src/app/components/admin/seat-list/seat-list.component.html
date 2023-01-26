@@ -14,7 +14,8 @@
     <tbody *ngIf="loadedSeats.length >= 1">
     <tr *ngFor="let seat of loadedSeats | tableFilter: filterData">
       <td>{{seat.seatNumber}}</td>
-      <td>{{seat.route}}</td>
+      <td *ngIf="seat.route != null">{{seat.route}}</td>
+      <td *ngIf="seat.route == null">Rota Bulunamadı</td>
       <td>{{seat.vehicle}}</td>
       <td>{{seat.status}}</td>
     </tr>

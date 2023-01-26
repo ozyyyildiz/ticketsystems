@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TicketModel} from "../../../shared/models/ticketModel";
+import {TicketModel} from "../../../models/ticketModel";
 import {TicketService} from "../../../services/ticket.service";
 import {ActivatedRoute} from "@angular/router";
 

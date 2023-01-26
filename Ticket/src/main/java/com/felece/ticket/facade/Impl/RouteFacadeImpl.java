@@ -1,4 +1,4 @@
-package com.felece.ticket.facade.Impl;
+package com.felece.ticket.facade.impl;
 
 import com.felece.ticket.dto.RouteDto;
 import com.felece.ticket.dto.VehicleDto;
@@ -44,9 +44,7 @@ public class RouteFacadeImpl implements RouteFacade {
         routeResponse.setFromCity(routeModel.getFromCity());
         routeResponse.setToCity(routeModel.getToCity());
         List<VehicleDto> vehicleDtoList = new ArrayList<>();
-        vehicleService.getAllVehiclesByRoute(routeModel.getId()).stream().forEach(vehicleModel -> {
-            vehicleDtoList.add(vehiclePopulator.modelToDto(vehicleModel));
-        });
+        vehicleService.getAllVehiclesByRoute(routeModel.getId()).forEach(vehicleModel -> vehicleDtoList.add(vehiclePopulator.modelToDto(vehicleModel)));
         if(!vehicleDtoList.isEmpty()){
             routeResponse.setVehicleDtoList(vehicleDtoList);
         }
@@ -56,9 +54,7 @@ public class RouteFacadeImpl implements RouteFacade {
     @Override
     public List<RouteDto> getAllRoutes() {
         List<RouteDto> routeDtoList = new ArrayList<>();
-        routeService.getAllRouteModels().stream().forEach(routeModel -> {
-            routeDtoList.add(routePopulator.modelToDto(routeModel));
-        });
+        routeService.getAllRouteModels().forEach(routeModel -> routeDtoList.add(routePopulator.modelToDto(routeModel)));
         return routeDtoList;
     }
 

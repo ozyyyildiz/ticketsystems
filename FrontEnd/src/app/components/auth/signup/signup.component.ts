@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserModel} from "../../../shared/models/userModel";
+import {UserModel} from "../../../models/userModel";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";

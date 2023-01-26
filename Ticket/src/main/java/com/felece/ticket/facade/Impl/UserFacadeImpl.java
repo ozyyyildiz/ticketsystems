@@ -1,4 +1,4 @@
-package com.felece.ticket.facade.Impl;
+package com.felece.ticket.facade.impl;
 
 import com.felece.ticket.dto.UserDto;
 import com.felece.ticket.facade.UserFacade;
@@ -6,6 +6,7 @@ import com.felece.ticket.model.UserModel;
 import com.felece.ticket.populators.UserPopulator;
 import com.felece.ticket.request.UserRequest;
 import com.felece.ticket.response.ResponseMessage;
+import com.felece.ticket.service.TicketService;
 import com.felece.ticket.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,19 +23,19 @@ public class UserFacadeImpl implements UserFacade {
     @Autowired
     private UserPopulator userPopulator;
 
+    @Autowired
+    private TicketService ticketService;
+
 
     @Override
     public UserDto getUser(String id) {
-        UserDto userDto = userPopulator.modelToDto(userService.getUserModel(Long.parseLong(id)));
-        return userDto;
+        return userPopulator.modelToDto(userService.getUserModel(Long.parseLong(id)));
     }
 
     @Override
     public List<UserDto> getAllUser() {
         List<UserDto> userDtoList = new ArrayList<>();
-        userService.getAllUserModels().stream().forEach(userModel -> {
-            userDtoList.add(userPopulator.modelToDto(userModel));
-        });
+        userService.getAllUserModels().forEach(userModel -> userDtoList.add(userPopulator.modelToDto(userModel)));
         return userDtoList;
     }
 
@@ -55,7 +56,10 @@ public class UserFacadeImpl implements UserFacade {
     public ResponseMessage deleteUser(String id) {
         ResponseMessage responseMessage = new ResponseMessage();
         responseMessage.setStatus(false);
-        responseMessage.setMessage("Kullanıcı silinirken bir hata oluştu.");;
+        responseMessage.setMessage("Kullanıcı silinirken bir hata oluştu.");
+//        UserModel userModel = userService.getUserModel(Long.parseLong(id));
+//
+//        ticketService.getTicketModelsByUsername(userModel.getUserName());
         if(userService.deleteUserModel(Long.parseLong(id))){
             responseMessage.setStatus(true);
             responseMessage.setMessage("Kullanıcı başarıyla silindi.");

@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {RoutesService} from "../../../../services/routes.service";
 import {ActivatedRoute, Params} from "@angular/router";
-import {RouteModel} from "../../../../shared/models/routeModel";
+import {RouteModel} from "../../../../models/routeModel";
 
 @Component({
   selector: 'app-admin-routes-detail',

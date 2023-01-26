@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpBackend, HttpClient} from "@angular/common/http";
-import {RouteModel} from "../shared/models/routeModel";
+import {RouteModel} from "../models/routeModel";
 import {map} from "rxjs/operators";
 
 @Injectable({

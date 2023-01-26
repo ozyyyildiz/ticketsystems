@@ -27,19 +27,19 @@ public class VehicleController {
         return vehicleFacade.getVehicleModel(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/createVehicle", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/createVehicle", consumes = "application/json", produces = "application/json")
     @ResponseBody
     public ResponseMessage createVehicle(@RequestBody VehicleRequest vehicleRequest){
         return vehicleFacade.saveVehicleModel(vehicleRequest);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/deleteVehicle{id}", produces = "application/json")
+    @PostMapping(value = "/deleteVehicle{id}", produces = "application/json")
     @ResponseBody
     public ResponseMessage deleteVehicle(@PathVariable("id") String id){
         return vehicleFacade.deleteVehicleModel(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/updateVehicle", produces = "application/json")
+    @PostMapping(value = "/updateVehicle", produces = "application/json")
     @ResponseBody
     public ResponseMessage updateVehicle(@RequestBody VehicleDto vehicleDto){
         return vehicleFacade.updateVehicleModel(vehicleDto);

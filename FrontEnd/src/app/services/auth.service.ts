@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpBackend, HttpClient, HttpHeaders} from "@angular/common/http";
-import {UserModel} from "../shared/models/userModel";
-import {LoginModel} from "../shared/models/loginModel";
+import {UserModel} from "../models/userModel";
+import {LoginModel} from "../models/loginModel";
 
 import {Observable} from "rxjs";
 import {JwtHelperService} from "@auth0/angular-jwt";

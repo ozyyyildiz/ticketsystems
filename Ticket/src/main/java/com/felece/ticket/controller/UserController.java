@@ -17,28 +17,28 @@ public class UserController {
     @Autowired
     private UserFacade userFacade;
 
-    @RequestMapping(method = RequestMethod.GET,value = "/")
+    @GetMapping(value = "/")
     public List<UserDto> getAllUsers(){
         return userFacade.getAllUser();
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = "/user/{id}")
+    @GetMapping(value = "/user/{id}")
     public UserDto getUser(@PathVariable("id") String id){
         return userFacade.getUser(id);
     }
 
-    @RequestMapping (method = RequestMethod.POST, value = "/createUser", produces = "application/json")
+    @PostMapping (value = "/createUser", produces = "application/json")
     @ResponseBody
     public ResponseMessage saveUser(@RequestBody final UserRequest userRequest){
         return userFacade.saveUser(userRequest);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/delete{id}")
+    @PostMapping(value = "/delete{id}")
     public ResponseMessage deleteUser(@PathVariable("id") String id){
         return userFacade.deleteUser(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/update")
+    @PostMapping(value = "/update")
     public ResponseMessage updateUser(@RequestBody final UserDto userDto){
         return userFacade.updateUser(userDto);
     }

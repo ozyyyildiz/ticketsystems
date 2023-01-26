@@ -1,4 +1,4 @@
-package com.felece.ticket.populators.Impl;
+package com.felece.ticket.populators.impl;
 
 import com.felece.ticket.dto.RouteDto;
 import com.felece.ticket.model.RouteModel;

@@ -1,10 +1,8 @@
-package com.felece.ticket.populators.Impl;
+package com.felece.ticket.populators.impl;
 
 import com.felece.ticket.dto.TicketDto;
-import com.felece.ticket.dto.TicketStatusDto;
 import com.felece.ticket.model.SeatModel;
 import com.felece.ticket.model.TicketModel;
-import com.felece.ticket.model.TicketStatusModel;
 import com.felece.ticket.populators.TicketPopulator;
 import com.felece.ticket.populators.UserPopulator;
 import com.felece.ticket.request.TicketRequest;

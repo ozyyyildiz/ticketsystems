@@ -1,4 +1,4 @@
-package com.felece.ticket.facade.Impl;
+package com.felece.ticket.facade.impl;
 
 import com.felece.ticket.dto.VehicleDto;
 import com.felece.ticket.facade.VehicleFacade;
@@ -37,17 +37,13 @@ public class VehicleFacadeImpl implements VehicleFacade {
 
     @Override
     public VehicleDto getVehicleModel(String id) {
-        VehicleModel vehicleModel = vehicleService.getVehicleModel(Long.parseLong(id));
-        VehicleDto vehicleDto = vehiclePopulator.modelToDto(vehicleModel);
-        return vehicleDto;
+        return vehiclePopulator.modelToDto(vehicleService.getVehicleModel(Long.parseLong(id)));
     }
 
     @Override
     public List<VehicleDto> getAllVehicleModel() {
         List<VehicleDto> vehicleDtoList = new ArrayList<>();
-        vehicleService.getAllVehicleModel().stream().forEach(vehicleModel -> {
-            vehicleDtoList.add(vehiclePopulator.modelToDto(vehicleModel));
-        });
+        vehicleService.getAllVehicleModel().forEach(vehicleModel -> vehicleDtoList.add(vehiclePopulator.modelToDto(vehicleModel)));
         return vehicleDtoList;
     }
 
@@ -66,7 +62,7 @@ public class VehicleFacadeImpl implements VehicleFacade {
             for(int i = 1; i<=vehicleRequest.getSeatCount(); i++){
                 SeatModel seatModel = new SeatModel();
                 if (i < 10) {
-                    seatModel.setSeatNumber("0" + String.valueOf(i));
+                    seatModel.setSeatNumber("0" + i);
                 } else {
                     seatModel.setSeatNumber(String.valueOf(i));
                 }

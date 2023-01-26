@@ -22,8 +22,6 @@ public interface UserDao {
 
     UserModel getByUsername(String username);
 
-    Boolean existsByUsername(String username);
-
     Boolean existsByEmail(String email);
 
 }

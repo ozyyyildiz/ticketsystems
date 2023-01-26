@@ -4,6 +4,7 @@ import com.felece.ticket.facade.SeatFacade;
 import com.felece.ticket.response.SeatResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,8 +18,8 @@ public class SeatController {
     @Autowired
     private SeatFacade seatFacade;
 
-    @RequestMapping(value = "/")
-    private List<SeatResponse> gelAllEmptySeats(){
+    @GetMapping(value = "/")
+    public List<SeatResponse> gelAllEmptySeats(){
         return seatFacade.getAllEmptySeats();
     }
 }

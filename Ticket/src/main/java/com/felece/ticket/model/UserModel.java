@@ -9,7 +9,7 @@ public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     private String userName;
 
@@ -21,7 +21,7 @@ public class UserModel {
     @JoinColumn(name = "role_id")
     private UserRoleModel role;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private Set<TicketModel> ticketModels;
 
     public UserModel() {
@@ -36,11 +36,11 @@ public class UserModel {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getUserName() {

@@ -33,11 +33,11 @@ public class AuthController {
     @Autowired
     private TokenManager tokenManager;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/register")
+    @PostMapping(value = "/register")
     @ResponseBody
     public ResponseMessage register(@RequestBody UserRequest userRequest){
         ResponseMessage responseMessage = new ResponseMessage();
-        if(userService.existsByUsername(userRequest.getUserName()) || userService.existsByEmail(userRequest.getEmail())){
+        if(userService.getByUsername(userRequest.getUserName()) != null || userService.existsByEmail(userRequest.getEmail())){
             responseMessage.setStatus(false);
             responseMessage.setMessage("Kullanıcı adı ya da email kullanımda");
             return responseMessage;
@@ -48,7 +48,7 @@ public class AuthController {
         return responseMessage;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/login")
+    @PostMapping(value = "/login")
     @ResponseBody
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest){
         Authentication authentication = authenticationManager.authenticate(

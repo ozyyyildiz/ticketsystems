@@ -1,4 +1,4 @@
-package com.felece.ticket.populators.Impl;
+package com.felece.ticket.populators.impl;
 
 import com.felece.ticket.dto.SeatDto;
 import com.felece.ticket.dto.VehicleDto;
@@ -36,9 +36,7 @@ public class VehiclePopulatorImpl implements VehiclePopulator {
         vehicleModel.setLicensePlate(vehicleDto.getLicensePlate());
         vehicleModel.setExpTime(DateConverter.stringToDate(vehicleDto.getExpTime()));
         Set<SeatModel> seatModelSet = new HashSet<>();
-        vehicleDto.getSeatDto().stream().forEach(seatDto -> {
-            seatModelSet.add(seatService.getSeatModel(Long.parseLong(seatDto.getId())));
-        });
+        vehicleDto.getSeatDto().forEach(seatDto -> seatModelSet.add(seatService.getSeatModel(Long.parseLong(seatDto.getId()))));
         vehicleModel.setSeatModels(seatModelSet);
         vehicleModel.setRoute(routeService.getRouteModel(Long.parseLong(vehicleDto.getRouteDto().getId())));
         return vehicleModel;
@@ -54,9 +52,7 @@ public class VehiclePopulatorImpl implements VehiclePopulator {
             vehicleDto.setRouteDto(routePopulator.modelToDto(vehicleModel.getRoute()));
         }
         List<SeatDto> seatDtoList = new ArrayList<>();
-        vehicleModel.getSeatModels().stream().forEach(seatModel -> {
-            seatDtoList.add(seatPopulator.modelToDto(seatModel));
-        });
+        vehicleModel.getSeatModels().forEach(seatModel -> seatDtoList.add(seatPopulator.modelToDto(seatModel)));
         Collections.sort(seatDtoList, Comparator.comparing(SeatDto::getSeatNumber));
         vehicleDto.setSeatDto(seatDtoList);
         return vehicleDto;

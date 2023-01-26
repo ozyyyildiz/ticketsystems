@@ -1,4 +1,4 @@
-package com.felece.ticket.service.Impl;
+package com.felece.ticket.service.impl;
 
 import com.felece.ticket.dao.SeatDao;
 import com.felece.ticket.model.SeatModel;

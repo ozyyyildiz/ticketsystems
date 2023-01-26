@@ -25,6 +25,8 @@ public class UserDaoImpl implements UserDao {
 
     private static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 
+    private static final String GET_USER_BY_USERNAME = "FROM UserModel WHERE userName = :username";
+
     @Override
     public UserModel getUserModel(Long id) {
         try{
@@ -86,12 +88,12 @@ public class UserDaoImpl implements UserDao {
     public Optional<UserModel> findByUsername(String username) {
         try{
             Session session = sessionFactory.getCurrentSession();
-            List<UserModel> users = session.createQuery("FROM UserModel WHERE userName = :username")
+            List<UserModel> users = session.createQuery(GET_USER_BY_USERNAME)
                     .setParameter("username", username).list();
             return users.isEmpty() ? Optional.empty() : Optional.of(users.get(0));
         }catch (Exception e){
             logger.error(e.toString());
-            return null;
+            return Optional.empty();
         }
     }
 
@@ -99,7 +101,7 @@ public class UserDaoImpl implements UserDao {
     public UserModel getByUsername(String username) {
         try{
             Session session = sessionFactory.getCurrentSession();
-            return (UserModel) session.createQuery("FROM UserModel WHERE userName = :username")
+            return (UserModel) session.createQuery(GET_USER_BY_USERNAME)
                     .setParameter("username", username).getSingleResult();
         }catch (Exception e){
             logger.error(e.toString());
@@ -108,31 +110,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Boolean existsByUsername(String username) {
-        try{
-            Session session = sessionFactory.getCurrentSession();
-            UserModel userModel = (UserModel) session.createQuery("FROM UserModel WHERE userName = :username").setParameter("username", username).getSingleResult();
-            if(userModel != null){
-                return true;
-            }else {
-                return false;
-            }
-        }catch (Exception e){
-            logger.error(e.toString());
-            return false;
-        }
-    }
-
-    @Override
     public Boolean existsByEmail(String email) {
         try{
             Session session = sessionFactory.getCurrentSession();
             UserModel userModel = (UserModel) session.createQuery("FROM UserModel WHERE email = :email").setParameter("email", email).getSingleResult();
-            if(userModel != null){
-                return true;
-            }else {
-                return false;
-            }
+            return userModel != null;
         }catch (Exception e){
             logger.error(e.toString());
             return false;

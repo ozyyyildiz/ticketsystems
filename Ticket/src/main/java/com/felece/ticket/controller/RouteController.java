@@ -19,30 +19,30 @@ public class RouteController {
     @Autowired
     private RouteFacade routeFacade;
 
-    @RequestMapping(value = "/")
+    @GetMapping(value = "/")
     public List<RouteDto> getRoutes(){
         SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         return routeFacade.getAllRoutes();
     }
 
-    @RequestMapping(value = "/route/{id}")
+    @GetMapping(value = "/route/{id}")
     public RouteResponse getRoute(@PathVariable("id") String id){
         return routeFacade.getRoute(id);
     }
 
-    @RequestMapping (method = RequestMethod.POST, value = "/createRoute", produces = "application/json")
+    @PostMapping(value = "/createRoute", produces = "application/json")
     @ResponseBody
     public ResponseMessage saveRoute(@RequestBody final RouteRequest routeRequest){
         return routeFacade.saveRoute(routeRequest);
     }
 
-    @RequestMapping (method = RequestMethod.POST, value = "/updateRoute", produces = "application/json")
+    @PostMapping(value = "/updateRoute", produces = "application/json")
     @ResponseBody
     public ResponseMessage updateRoute(@RequestBody final RouteDto routeDto){
         return routeFacade.updateRoute(routeDto);
     }
 
-    @RequestMapping (method = RequestMethod.POST, value = "/deleteRoute{id}", produces = "application/json")
+    @PostMapping(value = "/deleteRoute{id}", produces = "application/json")
     @ResponseBody
     public ResponseMessage deleteRoute(@PathVariable("id") String id){
         return routeFacade.deleteRoute(id);

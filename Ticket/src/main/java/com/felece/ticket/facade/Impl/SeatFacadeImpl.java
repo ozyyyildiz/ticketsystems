@@ -1,4 +1,4 @@
-package com.felece.ticket.facade.Impl;
+package com.felece.ticket.facade.impl;
 
 import com.felece.ticket.facade.SeatFacade;
 import com.felece.ticket.response.SeatResponse;
@@ -18,13 +18,15 @@ public class SeatFacadeImpl implements SeatFacade {
     @Override
     public List<SeatResponse> getAllEmptySeats() {
         List<SeatResponse> seatResponseList = new ArrayList<>();
-        seatService.getAllEmptySeats().stream().forEach(seatModel -> {
+        seatService.getAllEmptySeats().forEach(seatModel -> {
             SeatResponse seatResponse = new SeatResponse();
             seatResponse.setId(String.valueOf(seatModel.getId()));
             seatResponse.setSeatNumber(String.valueOf(seatModel.getSeatNumber()));
             seatResponse.setStatus(seatModel.getStatus().getStatus());
-            String route = seatModel.getVehicle().getRoute().getToCity() + " - " + seatModel.getVehicle().getRoute().getFromCity();
-            seatResponse.setRoute(route);
+            if(seatModel.getVehicle().getRoute()!=null){
+                String route = seatModel.getVehicle().getRoute().getToCity() + " - " + seatModel.getVehicle().getRoute().getFromCity();
+                seatResponse.setRoute(route);
+            }
             seatResponse.setVehicle(seatModel.getVehicle().getLicensePlate());
             seatResponseList.add(seatResponse);
         });

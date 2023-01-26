@@ -2,7 +2,7 @@ package com.felece.ticket.dto;
 
 public class UserDto {
 
-    private String Id;
+    private String id;
 
     private String userName;
 
@@ -16,7 +16,7 @@ public class UserDto {
     }
 
     public UserDto(String id, String userName, String email, String password, String userRole) {
-        Id = id;
+        this.id = id;
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -24,7 +24,7 @@ public class UserDto {
     }
 
     public UserDto(String id, String userName, String email, String userRole) {
-        Id = id;
+        this.id = id;
         this.userName = userName;
         this.email = email;
         this.userRole = userRole;
@@ -39,11 +39,11 @@ public class UserDto {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getUserName() {

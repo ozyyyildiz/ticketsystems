@@ -1,4 +1,4 @@
-package com.felece.ticket.populators.Impl;
+package com.felece.ticket.populators.impl;
 
 import com.felece.ticket.dto.SeatDto;
 import com.felece.ticket.dto.SeatStatusDto;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import {TicketModel} from "../shared/models/ticketModel";
+import {TicketModel} from "../models/ticketModel";
 import {map} from 'rxjs/operators'
 import {JwtHelperService} from "@auth0/angular-jwt";
 

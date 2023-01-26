@@ -35,11 +35,7 @@ public class TokenManager {
     }
 
     public boolean tokenValidate(String token){
-        if(getUsernameToken(token) != null && isExpired(token)){
-            return true;
-        }else{
-            return false;
-        }
+        return getUsernameToken(token) != null && isExpired(token);
     }
 
     public String getUsernameToken(String token){
@@ -51,8 +47,7 @@ public class TokenManager {
     }
 
     private Claims getClaims(String token) {
-        Claims claims = Jwts.parser().setSigningKey(jwtTokenKey).parseClaimsJws(token).getBody();
-        return claims;
+        return Jwts.parser().setSigningKey(jwtTokenKey).parseClaimsJws(token).getBody();
     }
 
 }

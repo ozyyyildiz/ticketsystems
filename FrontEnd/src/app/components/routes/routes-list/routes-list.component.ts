@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RouteModel} from "../../../shared/models/routeModel";
+import {RouteModel} from "../../../models/routeModel";
 
 @Component({
   selector: 'app-routes-list',

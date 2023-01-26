@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TicketService} from "../../../services/ticket.service";
 import {NgForm} from "@angular/forms";
-import {TicketModel} from "../../../shared/models/ticketModel";
+import {TicketModel} from "../../../models/ticketModel";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

@@ -1,4 +1,4 @@
-package com.felece.ticket.service.Impl;
+package com.felece.ticket.service.impl;
 
 import com.felece.ticket.dao.UserDao;
 import com.felece.ticket.model.UserModel;
@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -45,12 +44,6 @@ public class UserServiceImpl implements UserService {
     public UserModel getByUsername(String username) {
         return userDao.getByUsername(username);
     }
-
-    @Override
-    public Boolean existsByUsername(String username) {
-        return userDao.existsByUsername(username);
-    }
-
     @Override
     public Boolean existsByEmail(String email) {
         return userDao.existsByEmail(email);

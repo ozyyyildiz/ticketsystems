@@ -2,7 +2,7 @@ package com.felece.ticket.dto;
 
 public class UserRoleDto {
 
-    private String Id;
+    private String id;
 
     private String roleName;
 
@@ -10,16 +10,16 @@ public class UserRoleDto {
     }
 
     public UserRoleDto(String id, String roleName) {
-        Id = id;
+        this.id = id;
         this.roleName = roleName;
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getRoleName() {
