@@ -1,4 +1,5 @@
-Aşağıdaki sql sorgularını MySQL workbench altında çalıştırıp projeyi ayağa kaldırdıktan sonra, signup sayfasını kullanarak bir kullanıcı oluşturup, daha sonra database üzerinden userrole alanını 2'den 1'e çekerek admin ayarlarına ulaşabilirsiniz.
+Aşağıdaki sql sorgularını MySQL workbench altında çalıştırıp projeyi ayağa kaldırdıktan sonra, signup sayfasını kullanarak bir kullanıcı oluşturup, 
+daha sonra database üzerinden userrole alanını 2'den 1'e çekerek admin ayarlarına ulaşabilirsiniz.
 
 INSERT INTO `ticket`.`userrole` (`roleName`) VALUES ('Admin');
 INSERT INTO `ticket`.`userrole` (`roleName`) VALUES ('User');
